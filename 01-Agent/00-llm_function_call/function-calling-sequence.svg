@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="100%" role="img">
+<title>Function Calling 消息时序图</title>
+<desc>本地代码与 API 之间的两次调用，展示 assistant 消息为何要追加回历史</desc>
+<defs>
+<marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#444441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<rect x="150" y="40" width="140" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="220" y="58" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#042C53">本地代码</text>
+<rect x="390" y="40" width="140" height="36" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="460" y="58" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#26215C">DeepSeek API</text>
+<text x="460" y="92" text-anchor="middle" font-size="12" fill="#5F5E5A">（无状态：调用之间什么都不记得）</text>
+<line x1="220" y1="76" x2="220" y2="360" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 4"/>
+<line x1="460" y1="76" x2="460" y2="360" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 4"/>
+<line x1="224" y1="120" x2="456" y2="120" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arrow1)" fill="none"/>
+<text x="340" y="110" text-anchor="middle" font-size="12" fill="#2C2C2A">① 第 1 次调用：[user] + tools 菜单</text>
+<line x1="456" y1="165" x2="224" y2="165" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arrow1)" fill="none"/>
+<text x="340" y="155" text-anchor="middle" font-size="12" fill="#2C2C2A">② 返回 assistant 消息（tool_calls，不是答案）</text>
+<rect x="50" y="195" width="340" height="52" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="220" y="213" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#27500A">③ 本地执行 get_weather，</text>
+<text x="220" y="231" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#27500A">把 assistant 消息 + tool 结果追加进 messages_history</text>
+<line x1="224" y1="290" x2="456" y2="290" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arrow1)" fill="none"/>
+<text x="340" y="280" text-anchor="middle" font-size="12" fill="#2C2C2A">④ 第 2 次调用：完整 messages_history 重发</text>
+<line x1="456" y1="335" x2="224" y2="335" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arrow1)" fill="none"/>
+<text x="340" y="325" text-anchor="middle" font-size="12" fill="#2C2C2A">⑤ 返回最终回答 message.content</text>
+</svg>

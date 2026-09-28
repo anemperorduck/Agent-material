@@ -30,6 +30,7 @@ build/
 # IDE / OS
 .idea/
 .vscode/
+.workbuddy/
 *.swp
 .DS_Store
 Thumbs.db
