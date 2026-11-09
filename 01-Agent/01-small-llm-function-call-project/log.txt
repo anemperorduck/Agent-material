@@ -1,0 +1,201 @@
+============================================================
+LLM Function Calling 小工程
+可用工具：reverse_string / basic_calculator
+输入 'exit' 或 'quit' 退出
+============================================================
+
+[你] 
+
+
+************************************************************
+User>	 reverse "string"
+************************************************************
+
+=======>>> LLM request ======
+
+--- [0] system ---
+{
+  "role": "system",
+  "content": "你是一个有用的助手，拥有两个工具：\n  - reverse_string：反转字符串\n  - basic_calculator：四则运算（add/subtract/multiply/divide）\n需要时调用工具，然后用自然语言回答用户。"
+}
+--- [1] user ---
+{
+  "role": "user",
+  "content": "reverse \"string\""
+}
+
+=======<<< LLM response ======
+
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_UGITX5daKhzLs4H34G3R5778",
+      "function": {
+        "arguments": "{\"text\": \"string\"}",
+        "name": "reverse_string"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "reasoning_content": "The user wants to reverse the string \"string\". Let me call the reverse_string tool.\n\nWait, \"reverse \"string\"\" — they want to reverse the literal string \"string\". Let me do that."
+}
+
+=======>>> LLM request ======
+
+--- [0] system ---
+{
+  "role": "system",
+  "content": "你是一个有用的助手，拥有两个工具：\n  - reverse_string：反转字符串\n  - basic_calculator：四则运算（add/subtract/multiply/divide）\n需要时调用工具，然后用自然语言回答用户。"
+}
+--- [1] user ---
+{
+  "role": "user",
+  "content": "reverse \"string\""
+}
+--- [2] assistant ---
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_UGITX5daKhzLs4H34G3R5778",
+      "function": {
+        "arguments": "{\"text\": \"string\"}",
+        "name": "reverse_string"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "reasoning_content": "The user wants to reverse the string \"string\". Let me call the reverse_string tool.\n\nWait, \"reverse \"string\"\" — they want to reverse the literal string \"string\". Let me do that."
+}
+--- [3] tool ---
+{
+  "role": "tool",
+  "tool_call_id": "call_00_UGITX5daKhzLs4H34G3R5778",
+  "content": "gnirts"
+}
+
+=======<<< LLM response ======
+
+{
+  "content": "把 `\"string\"` 反转后得到：**gnirts**",
+  "role": "assistant",
+  "reasoning_content": ""
+}
+Model>	 把 `"string"` 反转后得到：**gnirts**
+
+
+
+============================================================
+Assistant>	 把 `"string"` 反转后得到：**gnirts**
+************************************************************
+
+[助手] 把 `"string"` 反转后得到：**gnirts**
+────────────────────────────────────────────────────────────
+
+
+[你] 
+
+
+************************************************************
+User>	 1231234 divde by 6873 equals?
+************************************************************
+
+=======>>> LLM request ======
+
+--- [0] system ---
+{
+  "role": "system",
+  "content": "你是一个有用的助手，拥有两个工具：\n  - reverse_string：反转字符串\n  - basic_calculator：四则运算（add/subtract/multiply/divide）\n需要时调用工具，然后用自然语言回答用户。"
+}
+--- [1] user ---
+{
+  "role": "user",
+  "content": "1231234 divde by 6873 equals?"
+}
+
+=======<<< LLM response ======
+
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_DgIr6SVHs1Y9ky9leItd5549",
+      "function": {
+        "arguments": "{\"operation\": \"divide\", \"a\": 1231234, \"b\": 6873}",
+        "name": "basic_calculator"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "reasoning_content": "The user wants 1231234 divided by 6873."
+}
+
+=======>>> LLM request ======
+
+--- [0] system ---
+{
+  "role": "system",
+  "content": "你是一个有用的助手，拥有两个工具：\n  - reverse_string：反转字符串\n  - basic_calculator：四则运算（add/subtract/multiply/divide）\n需要时调用工具，然后用自然语言回答用户。"
+}
+--- [1] user ---
+{
+  "role": "user",
+  "content": "1231234 divde by 6873 equals?"
+}
+--- [2] assistant ---
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_DgIr6SVHs1Y9ky9leItd5549",
+      "function": {
+        "arguments": "{\"operation\": \"divide\", \"a\": 1231234, \"b\": 6873}",
+        "name": "basic_calculator"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "reasoning_content": "The user wants 1231234 divided by 6873."
+}
+--- [3] tool ---
+{
+  "role": "tool",
+  "tool_call_id": "call_00_DgIr6SVHs1Y9ky9leItd5549",
+  "content": "1231234 ÷ 6873 = 179.1406954750473"
+}
+
+=======<<< LLM response ======
+
+{
+  "content": "1231234 ÷ 6873 = **179.1406954750473**（约等于 179.14）。\n\n如果需要，我可以帮你把它算成带余数的形式或四舍五入到指定小数位。",
+  "role": "assistant",
+  "reasoning_content": "The result is 179.1406954750473. Let me present it."
+}
+Model>	 1231234 ÷ 6873 = **179.1406954750473**（约等于 179.14）。
+
+如果需要，我可以帮你把它算成带余数的形式或四舍五入到指定小数位。
+
+
+
+============================================================
+Assistant>	 1231234 ÷ 6873 = **179.1406954750473**（约等于 179.14）。
+
+如果需要，我可以帮你把它算成带余数的形式或四舍五入到指定小数位。
+************************************************************
+
+[助手] 1231234 ÷ 6873 = **179.1406954750473**（约等于 179.14）。
+
+如果需要，我可以帮你把它算成带余数的形式或四舍五入到指定小数位。
+────────────────────────────────────────────────────────────
+
+
+[你] 再见！

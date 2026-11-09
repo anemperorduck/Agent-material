@@ -22,7 +22,7 @@ def _execute_tool(name: str, arguments: str) -> str:
         return f"ERROR: {exc}"
 
 
-def chat_with_tools(client: OpenAI, user_message: str, model: str = "deepseek-v4-pro") -> str:
+def chat_with_tools(client: OpenAI, user_message: str, model: str = "deepseek-v4-flash") -> str:
     """单问题问答：最多 1 次工具调用 + 1 次最终生成。"""
     messages: list[dict] = [
         {"role": "system", "content": SYSTEM_PROMPT},
